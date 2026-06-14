@@ -64,6 +64,10 @@ jobs:
           Branch=${{ github.ref_name }}
           Commit=${{ github.sha }}
           EOF
+          
+      - name: Copy categories json
+        if: always()
+        run: cp categories.json allure-results/categories.json
 
       - name: Install Allure CLI
         if: always()

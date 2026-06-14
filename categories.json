@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Product Bugs",
+    "matchedStatuses": ["failed"],
+    "messageRegex": ".*AssertionError.*"
+  },
+  {
+    "name": "Test Infrastructure Issues",
+    "matchedStatuses": ["broken"],
+    "messageRegex": ".*TimeoutError.*|.*ConnectionError.*"
+  },
+  {
+    "name": "Ignored Tests",
+    "matchedStatuses": ["skipped"]
+  },
+  {
+    "name": "Flaky Tests",
+    "matchedStatuses": ["failed", "broken"],
+    "messageRegex": ".*flaky.*"
+  }
+]
