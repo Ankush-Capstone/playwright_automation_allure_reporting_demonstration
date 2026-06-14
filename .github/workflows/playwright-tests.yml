@@ -49,6 +49,21 @@ jobs:
 
       - name: Run tests
         run: pytest -v
+      
+      - name: Generate environment properties
+        if: always()
+        run: |
+          cat > allure-results/environment.properties << EOF
+          Environment=${{ vars.TEST_ENV || 'QA' }}
+          Browser=Chromium
+          Base.URL=${{ vars.BASE_URL || 'https://demo.playwright.dev/todomvc' }}
+          Python.Version=$(python --version | cut -d' ' -f2)
+          Framework=Playwright + pytest
+          Build.Number=${{ github.run_number }}
+          Triggered.By=${{ github.actor }}
+          Branch=${{ github.ref_name }}
+          Commit=${{ github.sha }}
+          EOF
 
       - name: Install Allure CLI
         if: always()

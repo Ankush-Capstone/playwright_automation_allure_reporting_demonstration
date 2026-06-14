@@ -2,6 +2,18 @@ import allure
 import pytest
 from playwright.sync_api import Page
 from pages.todo_page import TodoPage
+import os
+import platform
+
+def pytest_configure(config):
+    os.makedirs("allure-results", exist_ok=True)
+    with open("allure-results/environment.properties", "w") as f:
+        f.write(f"Environment=LOCAL\n")
+        f.write(f"Browser=Chromium\n")
+        f.write(f"Base.URL=https://demo.playwright.dev/todomvc\n")
+        f.write(f"Python.Version={platform.python_version()}\n")
+        f.write(f"Framework=Playwright + pytest\n")
+        f.write(f"OS={platform.system()}\n")
 
 
 @pytest.fixture()
