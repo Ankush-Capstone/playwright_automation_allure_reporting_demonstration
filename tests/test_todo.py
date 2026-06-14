@@ -100,3 +100,28 @@ class TestTodo:
 
         with allure.step("Verify updated text is saved correctly"):
             assert todo_page.get_todo_text(0) == "Updated Text"
+            
+    @allure.title("Simulated timeout error - infrastructure issue")
+    @allure.description("This test simulates a timeout error to demonstrate Test Infrastructure Issues category")
+    @allure.severity(severity_level.CRITICAL)
+    @allure.story("Add Todo")
+    def test_simulated_timeout(self, todo_page: TodoPage):
+        with allure.step("Navigate to page"):
+            todo_page.open()
+
+        with allure.step("Wait for non existent element - causes timeout"):
+            todo_page.page.wait_for_selector(".non-existent-element", timeout=1000)
+
+        with allure.step("Verify page loaded"):
+            assert todo_page.get_todo_count() == 0
+
+    @allure.title("Simulated assertion error - product bug")
+    @allure.description("This test simulates an assertion error to demonstrate Product Bugs category")
+    @allure.severity(severity_level.NORMAL)
+    @allure.story("Delete Todo")
+    def test_simulated_assertion_error(self, todo_page: TodoPage):
+        with allure.step("Add a todo item"):
+            todo_page.add_todo("Test Item")
+
+        with allure.step("Verify wrong count - deliberate failure"):
+            assert todo_page.get_todo_count() == 99
