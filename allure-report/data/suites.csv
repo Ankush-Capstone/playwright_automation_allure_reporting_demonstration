@@ -1,6 +1,0 @@
-"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"Verify that clicking the checkbox marks a todo as completed and updates the footer count","130","User can complete a todo item","tests","2026-06-14","passed","2026-06-14","TestTodo","test_todo","",""
-"Verify that hovering and clicking delete removes the todo item from the list","164","User can delete a todo item","tests","2026-06-14","passed","2026-06-14","TestTodo","test_todo","",""
-"Verify that double clicking a todo allows editing and saves the updated text","151","User can edit an existing todo item","tests","2026-06-14","passed","2026-06-14","TestTodo","test_todo","",""
-"Verify that a user can add a todo item and it appears in the list with correct count","76","User can add a single todo item","tests","2026-06-14","passed","2026-06-14","TestTodo","test_todo","",""
-"Verify that Active filter shows incomplete todos and Completed filter shows done todos","1827","User can filter todos by Active and Completed","tests","2026-06-14","passed","2026-06-14","TestTodo","test_todo","",""
