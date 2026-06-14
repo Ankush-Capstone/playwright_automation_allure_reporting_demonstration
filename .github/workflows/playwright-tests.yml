@@ -7,6 +7,11 @@ on:
     branches: [ main ]
   workflow_dispatch:
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -36,7 +41,7 @@ jobs:
           workflow: playwright-tests.yml
           if_no_artifact_found: warn
         continue-on-error: true
-        
+
       - name: Run tests
         run: pytest -v
 
@@ -70,3 +75,15 @@ jobs:
           name: allure-report
           path: allure-report
           retention-days: 7
+
+      - name: Setup GitHub Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload report to GitHub Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: allure-report
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
