@@ -74,7 +74,7 @@ class TestTodo:
 
         with allure.step("Apply Active filter and verify 2 items visible"):
             todo_page.filter_active()
-            assert todo_page.get_todo_count() == 2
+            assert todo_page.get_todo_count() == 1 #failing it delibrately to check allure report for failed test case
 
         with allure.step("Apply Completed filter and verify 1 item visible"):
             todo_page.filter_completed()
