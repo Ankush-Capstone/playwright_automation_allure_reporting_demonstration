@@ -46,6 +46,13 @@ jobs:
       - name: Generate Allure report
         run: allure generate allure-results --clean -o allure-report
 
+      - name: Verify history folder exists
+        run: |
+          echo "Contents of allure-report:"
+          ls -la allure-report/
+          echo "Contents of allure-report/history:"
+          ls -la allure-report/history/ || echo "History folder does not exist"
+
       - name: Upload Allure history for next run
         uses: actions/upload-artifact@v4
         if: always()
