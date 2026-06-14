@@ -64,7 +64,22 @@ jobs:
           Branch=${{ github.ref_name }}
           Commit=${{ github.sha }}
           EOF
-          
+      
+      - name: Generate executor json
+        if: always()
+        run: |
+          cat > allure-results/executor.json << EOF
+          {
+            "name": "GitHub Actions",
+            "type": "github",
+            "url": "https://github.com/${{ github.repository }}/actions",
+            "buildOrder": ${{ github.run_number }},
+            "buildName": "Run #${{ github.run_number }}",
+            "buildUrl": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}",
+            "reportUrl": "https://ankush-capstone.github.io/playwright_automation_allure_reporting_demonstration"
+          }
+          EOF
+
       - name: Copy categories json
         if: always()
         run: cp categories.json allure-results/categories.json
