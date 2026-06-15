@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Allure Reports Dashboard</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 900px; margin: 40px auto; padding: 0 20px; background: #f5f5f5; }
+    h1 { color: #333; }
+    .latest { background: #4CAF50; color: white; padding: 15px 20px; border-radius: 8px; margin-bottom: 30px; display: block; text-decoration: none; font-size: 18px; }
+    .latest:hover { background: #45a049; }
+    table { width: 100%; border-collapse: collapse; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    th { background: #333; color: white; padding: 12px 15px; text-align: left; }
+    td { padding: 12px 15px; border-bottom: 1px solid #eee; }
+    tr:hover { background: #f9f9f9; }
+    a { color: #1976D2; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <h1>Allure Reports Dashboard</h1>
+  <a class="latest" href="latest/index.html">View Latest Report</a>
+  <h2>All Runs (last 10)</h2>
+  <table>
+    <tr><th>Run</th><th>Report</th></tr>
+    <tr><td>Run #23</td><td><a href='reports/run-23/index.html'>Open Report</a></td></tr>
+  </table>
+</body>
+</html>

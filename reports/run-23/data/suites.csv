@@ -1,0 +1,8 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"This test simulates an assertion error to demonstrate Product Bugs category","38","Simulated assertion error - product bug","tests","2026-06-15","failed","2026-06-15","TestTodo","test_todo","",""
+"Verify that double clicking a todo allows editing and saves the updated text","83","User can edit an existing todo item","tests","2026-06-15","passed","2026-06-15","TestTodo","test_todo","",""
+"This test simulates a timeout error to demonstrate Test Infrastructure Issues category","1023","Simulated timeout error - infrastructure issue","tests","2026-06-15","broken","2026-06-15","TestTodo","test_todo","",""
+"Verify that clicking the checkbox marks a todo as completed and updates the footer count","85","User can complete a todo item","tests","2026-06-15","passed","2026-06-15","TestTodo","test_todo","",""
+"Verify that hovering and clicking delete removes the todo item from the list","126","User can delete a todo item","tests","2026-06-15","passed","2026-06-15","TestTodo","test_todo","",""
+"Verify that a user can add a todo item and it appears in the list with correct count","88","User can add a single todo item","tests","2026-06-15","passed","2026-06-15","TestTodo","test_todo","",""
+"Verify that Active filter shows incomplete todos and Completed filter shows done todos","641","User can filter todos by Active and Completed","tests","2026-06-15","failed","2026-06-15","TestTodo","test_todo","",""
