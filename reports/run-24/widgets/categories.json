@@ -1,0 +1,1 @@
+{"total":2,"items":[{"uid":"da92d1ca75c264794e1d85095248ccbe","name":"Product Bugs","statistic":{"failed":2,"broken":0,"skipped":0,"passed":0,"unknown":0,"total":2}},{"uid":"2f2c1b588bebca52de4290016a379342","name":"Test Infrastructure Issues","statistic":{"failed":0,"broken":1,"skipped":0,"passed":0,"unknown":0,"total":1}}]}
