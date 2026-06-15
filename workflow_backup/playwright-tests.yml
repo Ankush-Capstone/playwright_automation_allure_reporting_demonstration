@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
 
@@ -118,73 +118,17 @@ jobs:
           path: allure-report
           retention-days: 7
 
-      - name: Checkout gh-pages branch
+      - name: Setup GitHub Pages
         if: always()
-        uses: actions/checkout@v4
+        uses: actions/configure-pages@v4
+
+      - name: Upload report to GitHub Pages
+        if: always()
+        uses: actions/upload-pages-artifact@v3
         with:
-          ref: gh-pages
-          path: gh-pages
+          path: allure-report
 
-      - name: Copy new report into gh-pages
+      - name: Deploy to GitHub Pages
         if: always()
-        run: |
-          mkdir -p gh-pages/reports/run-${{ github.run_number }}
-          cp -r allure-report/. gh-pages/reports/run-${{ github.run_number }}/
-          cp -r allure-report/. gh-pages/latest/
-
-      - name: Keep only last 10 runs
-        if: always()
-        run: |
-          cd gh-pages/reports
-          ls -d run-* | sort -t- -k2 -n | head -n -10 | xargs -r rm -rf
-
-      - name: Generate index.html
-        if: always()
-        run: |
-          cd gh-pages
-          cat > index.html << 'EOF'
-          <!DOCTYPE html>
-          <html>
-          <head>
-            <title>Allure Reports Dashboard</title>
-            <style>
-              body { font-family: Arial, sans-serif; max-width: 900px; margin: 40px auto; padding: 0 20px; background: #f5f5f5; }
-              h1 { color: #333; }
-              .latest { background: #4CAF50; color: white; padding: 15px 20px; border-radius: 8px; margin-bottom: 30px; display: block; text-decoration: none; font-size: 18px; }
-              .latest:hover { background: #45a049; }
-              table { width: 100%; border-collapse: collapse; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-              th { background: #333; color: white; padding: 12px 15px; text-align: left; }
-              td { padding: 12px 15px; border-bottom: 1px solid #eee; }
-              tr:hover { background: #f9f9f9; }
-              a { color: #1976D2; text-decoration: none; }
-              a:hover { text-decoration: underline; }
-            </style>
-          </head>
-          <body>
-            <h1>Allure Reports Dashboard</h1>
-            <a class="latest" href="latest/index.html">View Latest Report</a>
-            <h2>All Runs (last 10)</h2>
-            <table>
-              <tr><th>Run</th><th>Report</th></tr>
-          EOF
-
-          for dir in $(ls -d reports/run-* 2>/dev/null | sort -t- -k2 -n -r); do
-            run_num=$(echo $dir | grep -o '[0-9]*$')
-            echo "    <tr><td>Run #${run_num}</td><td><a href='${dir}/index.html'>Open Report</a></td></tr>" >> index.html
-          done
-
-          cat >> index.html << 'EOF'
-            </table>
-          </body>
-          </html>
-          EOF
-
-      - name: Push to gh-pages
-        if: always()
-        run: |
-          cd gh-pages
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
-          git add .
-          git diff --staged --quiet || git commit -m "Add report for run #${{ github.run_number }}"
-          git push origin gh-pages
+        id: deployment
+        uses: actions/deploy-pages@v4
