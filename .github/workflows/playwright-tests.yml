@@ -87,9 +87,10 @@ jobs:
       - name: Add one click open script
         if: always()
         run: |
-          cat > allure-report/open_report.ps1 << 'EOF'
-          Write-Host "Starting Allure Report Server..."
-          Start-Process "http://localhost:8080"
+          cat > allure-report/open_report.bat << 'EOF'
+          @echo off
+          echo Starting Allure Report Server...
+          start http://localhost:8080
           python -m http.server 8080
           EOF
 
